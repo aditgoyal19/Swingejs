@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+
+  <%- include partials/head %>
+</head>
+<body ng-app="swingApp" >
+<%- include partials/header %>
+
+    <div class="container" id="loginform">
+   
+    <img src="images/img 7.png" width="250" height="75">
+    <br><br>
+                    <form method="POST" action="/login">          
+                    <div class="row">
+                        <div class="col-xs-3">
+                                    <img src="images/user.png" height="20" width="20">
+                                    </div>
+                                               <div class="col-xs-9">
+                                    <input type="text" name="username" id="username"  placeholder="Enter your Name"/>
+</div>
+</div>
+   <hr>
+       <div class="row">
+                        <div class="col-xs-3">
+                                    <img src="images/lock.png" height="20" width="20">
+                                    </div>
+                                               <div class="col-xs-9"> 
+                                    <input type="password" name="password" id="password"  placeholder="Enter your Password"/>
+</div>
+
+</div>
+   <hr>
+                            <button target="_blank" type="submit" class="btn mainButton">Login</button>
+                        </div>
+                        
+                    </form>
+       
+            
+
+<!--                 <label class="checkbox pull-left">
+                    <input type="checkbox" value="remember-me">
+                    Remember me
+                </label> -->
+                <div class="row" id="options">
+                 <div class="col-xs-6">
+                   <a href="#/register" class="text-center new-account">Create an account </a>
+                   </div>
+                    <div class="col-xs-6">
+                <a href="#/help" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                </div>
+                </div>
+        
+
+         
+
+</div>
+         
+<%- include partials/footer %>
+</body>
+  <script src="javascripts/bootstrap.js"></script>
+        <script src="javascripts/main.js"></script>
+
+</html>

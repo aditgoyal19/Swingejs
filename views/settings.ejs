@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" charset="UTF-8" content="width=device-width, initial-scale=1">
+  <title><%= title %></title>
+
+  <%- include partials/head %>
+</head>
+<body ng-app="swingApp" >
+<%- include partials/header %>
+<div class="container" id="aboutdiv">
+
+<br>
+<br>
+<br>
+<hr>
+<h3>Settings</h3>
+<div id="settingsDiv">
+<br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main1.css')">
+Heaven</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main2.css')">
+Magic</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main3.css')">
+Intellect</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main5.css')">
+Harmony</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main4.css')">
+Sunshine</a><br><br>
+</div>
+</div>
+         
+<%- include partials/footer %>
+</body>
+  <script src="javascripts/bootstrap.js"></script>
+        <script src="javascripts/main.js"></script>
+
+</html>

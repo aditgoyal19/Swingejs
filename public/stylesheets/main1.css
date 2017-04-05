@@ -1,0 +1,152 @@
+/*register*/
+/*
+/* Created by Filipe Pina
+ * Specific styles of signin, register, component
+ */
+/*
+ * General styles
+ */
+  body{
+text-align: center;
+  background-color: #13173c;
+}
+.hidden{
+    display: none;
+}
+#headertop{
+   padding-top: 15px;
+    padding-bottom: 2px; 
+  background-color: #13173c;      
+}
+#bottomNav{
+      padding-top: 7px;
+    padding-bottom: 7px;
+    border-color: white;
+    background-color: #13173c;
+ border-style: solid;
+ border-top-width: 1px;
+ border-right-width: 0px;
+  border-left-width: 0px;
+   border-bottom-width: 0px;
+}
+/*about page*/
+p,a, #aboutdiv h3{
+text-decoration: none;
+color: white;
+}
+#aboutdiv{
+    padding-left: 0;
+    padding-right: 0;
+}
+/*gallery page*/
+.gallerydiv img{
+    max-height: 100%;
+    max-width: 100%;
+}
+.gallerydiv{
+    padding-left: 0px;
+    padding-right: 0px;
+     border-style: solid;
+        background-color: #13173c;
+ border-width: 1px;}
+ /*home page*/
+ #mainDiv {    
+    background: url(../images/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+width: 100%;
+ }
+ /*help page*/
+ #helpDiv p{
+    text-align: left;
+
+    padding-right: 25px;
+    padding-left: 25px;
+ }
+ /*register*/
+ #loginform,#registerform form{
+   padding-top:40px;
+   margin-top: 60px;
+
+ }
+  #loginform input:focus, #registerform input:focus
+   {
+ outline: 0 none;
+}
+   #loginform input, .registerinput{
+
+   background-color: rgba(0,0,0,0);
+   border: 0px;
+   color: white;
+
+ }
+
+ #loginform hr,  #registerform hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
+   }
+   /*login*/
+   #loginform {
+    margin-top: 80px;
+   }
+ /*other css*/
+
+
+
+hr{
+    width: 100%;
+    color: #fff;
+}
+
+
+
+/*log in*/
+#options{
+  padding-right: 15px;
+  padding-bottom: 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
+
+        /*buttons in settings*/
+        .btn{
+                            border-radius: 15px;
+
+    padding-left: 80px;
+    padding-right: 80px;
+     width: 210px;
+ 
+        }
+        .settingButton{
+            background-color: #efd3d8;
+               border-color: black;
+     color: black;
+
+        }
+        #settingsDiv a:visited{
+   background-color: #efd3d8;
+    color: black;
+        }
+#settingsDiv a:hover, #settingsDiv a:active{
+            text-decoration: none;
+    color: white;
+    background-color: black;
+    border-color: white;
+} 
+
+/*for registration form*/
+
+ .mainButton{
+       background-color: #e04553;
+       
+       color: white;
+ }
