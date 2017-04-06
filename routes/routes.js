@@ -11,6 +11,14 @@ var User = require('../models/User.js');
 
 var passport = require('passport');
 
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next();
+  }
+  return res.redirect('/login');
+}
+
+
 
 /* 0. GET index page. */
 router.get('/', function(req, res) {
@@ -37,6 +45,12 @@ router.get('/register', function(req, res) {
 }); 
 
 router.post('/register', function(req, res) {
+
+
+
+if(req.body.password = req.body.confirm){
+
+
     User.register(new User({ username : req.body.username,
     	email : req.body.email }), req.body.password, function(err, user) {
         if (err) {
@@ -49,53 +63,58 @@ router.post('/register', function(req, res) {
             res.redirect('/');
         });
     });
+  }
+  else{
+    console.log("password doesnt match");
+     res.redirect('/register');
+  }
 });
 
 /* 4. GET home page. */
 router.get('/home', function(req, res) {
-	  res.render('home', { title: 'swing/home' });
+    res.render('home', { title: 'swing/home' });
 }); 
 
 
 /* 5. GET account page. */
-router.get('/account', function(req, res) {
-	  res.render('account', { title: 'swing/account' });
+router.get('/account',isLoggedIn, function(req, res) {
+    res.render('account', { title: 'swing/account' });
 }); 
 
 
 /* 6. GET settings page. */
 router.get('/settings', function(req, res) {
-	  res.render('settings', { title: 'swing/settings' });
+    res.render('settings', { title: 'swing/settings' });
 }); 
 
 
 /* 7. GET survey page. */
 router.get('/survey', function(req, res) {
-	  res.render('survey', { title: 'swing/survey' });
+    res.render('survey', { title: 'swing/survey' });
 }); 
 
 
 /* 8. GET progress page. */
 router.get('/progress', function(req, res) {
-	  res.render('progress', { title: 'swing/progress' });
+    res.render('progress', { title: 'swing/progress' });
 }); 
 
 
 /* 9. GET aboutus page. */
 router.get('/aboutus', function(req, res) {
-	  res.render('aboutus', { title: 'swing/aboutus' });
+    res.render('aboutus', { title: 'swing/aboutus' });
 }); 
 
 
 /* 10. GET help page. */
 router.get('/help', function(req, res) {
-	  res.render('help', { title: 'swing/help' });
+    res.render('help', { title: 'swing/help' });
 }); 
 
 
 /* 11. GET gallery page. */
 router.get('/gallery', function(req, res) {
-	  res.render('gallery', { title: 'swing/gallery' });
+    res.render('gallery', { title: 'swing/gallery' });
 }); 
 
 /* 12. GET gallery page. */
@@ -103,15 +122,22 @@ router.get('/quotes', function(req, res) {
     res.render('quotes', { title: 'swing/quotes' });
 }); 
 
-/* 13. GET help page. */
-router.get('/forget', function(req, res) {
-	  res.render('forget', { title: 'swing/forgetpassword' });
-}); 
-/*14.logout*/
+/*13.logout*/
   router.get('/logout', function (req, res, next) {
      req.logout();
     res.redirect('/login');
   });
-
+  /* 14. GET gallery page. */
+router.get('/blog', function(req, res) {
+    res.render('blog', { title: 'swing/blog' });
+}); 
+/* 15. GET gallery page. */
+router.get('/terms', function(req, res) {
+    res.render('terms', { title: 'swing/terms' });
+}); 
+/* 16. GET gallery page. */
+router.get('/policies', function(req, res) {
+    res.render('policies', { title: 'swing/policies' });
+}); 
 
 module.exports = router;
