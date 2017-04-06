@@ -6,9 +6,23 @@
 
   <%- include partials/head %>
 </head>
-<body ng-app="swingApp" >
-<%- include partials/header %>
-         
+<body>
+   <%- include partials/header %>
+   <div class="container" id="quotepage">
+    <% quotes.forEach(function(quote) { %>
+    <div class="row quote">
+<div class="col-xs-4">
+<img src="images/<%= quote.image %>">
+</div>
+<div class="col-xs-8">
+<p>  <%= quote.quotation %> - <%= quote.author %> </p>
+</div>
+</div>
+<hr>
+
+    <% }); %>
+    </div>
+
 <%- include partials/footer %>
 </body>
   <script src="javascripts/bootstrap.js"></script>

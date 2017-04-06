@@ -10,6 +10,23 @@
 text-align: center;
   background-color: #13173c;
 }
+
+.quote{
+  margin: 0px;
+  padding: 0px;
+}
+.quote img{
+  max-width:120px;
+  max-height: 120px;
+}
+.quote p{
+ font-size: 1em;
+}
+#quotepage hr{
+margin-top: 0px;
+margin-bottom: 10px;
+
+}
 .hidden{
     display: none;
 }
@@ -50,12 +67,7 @@ color: white;
         background-color: #13173c;
  border-width: 1px;}
  /*home page*/
- #mainDiv {    
-    background: url(../images/bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-width: 100%;
- }
+
  /*help page*/
  #helpDiv p{
     text-align: left;
@@ -69,7 +81,7 @@ width: 100%;
    margin-top: 60px;
 
  }
-  #loginform input:focus, #registerform input:focus
+  #loginform input:focus, #registerform input:focus,  #help textarea:focus
    {
  outline: 0 none;
 }

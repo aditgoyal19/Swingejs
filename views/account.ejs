@@ -9,23 +9,46 @@
 <body ng-app="swingApp" >
 <%- include partials/header %>
 <div class="container" id="registerform">
-<hr>Account</h3>
-
-
-<form method="POST" action="register" id="register_form">
-
-
+<br>
+<br>
+<h3>Account</h3>
+   <div class="text-center"><a href="/logout"><img src="images/img 8.png" width="5" height="25"></a></div>
+<div id="settingsDiv">
+<br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main1.css')">
+Heaven</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main2.css')">
+Magic</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main3.css')">
+Intellect</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main5.css')">
+Harmony</a><br><br>
+<a class="btn btn-primary settingButton" href="#" role="button" onclick="setStyleSheet('stylesheets/main4.css')">
+Sunshine</a><br><br>
+</div>
 <div class="row">
 <div class="col-xs-3">
-<img src="images/user.png" height="20" width="20">
+<p>Username</p>
 </div>
-<div class="col-xs-9">
-<input type="text" name="username" id="username"  placeholder="Enter your Name" class="registerinput"/>
+<div class="col-xs-9"> 
+<p> <%= user.username %>
+</p>
 </div>
 
 </div>
-<hr>
+<div class="row">
+<div class="col-xs-3">
+<p>Email</p>
+</div>
+<div class="col-xs-9"> 
+<p> <%= user.email %>
+	
+</p>
+</div>
 
+</div>
+
+<form method="POST" action="/account/<%= user.id %>" id="register_form">
 
 
 <div class="row">
@@ -34,7 +57,7 @@
 </div>
 <div class="col-xs-9">
 
-<input type="text" name="email" id="email"  placeholder="Enter your Email" class="registerinput"/>
+<input type="text" name="email" id="email"  placeholder="Update your Email" class="registerinput"/>
 
 </div>
 
@@ -46,7 +69,7 @@
 <img src="images/lock.png" height="20" width="20">
 </div>
 <div class="col-xs-9"> 
-<input type="password" name="password" id="password"  placeholder="Enter your Password" class="registerinput"/>
+<input type="password" name="password" id="password"  placeholder="Update your Password" class="registerinput"/>
 </div>
 
 </div>
@@ -62,7 +85,7 @@
 </div>
 <hr>
 <br>
-<input type="submit" class="btn mainButton" value="Register">
+<input type="submit" class="btn mainButton" value="Submit">
 
 
 <!-- Success message -->

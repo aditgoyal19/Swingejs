@@ -5,6 +5,7 @@
   <title><%= title %></title>
 
   <%- include partials/head %>
+
 </head>
 <body ng-app="swingApp" >
 <%- include partials/header %>
@@ -22,8 +23,8 @@
 
 <div id="mainDiv"><br>
 <br><br>
-<br><p>“Only I can change my life. No one can do it for me”</p><br>
-<p>-Carol Burnett</p><br>
+<br><p>“ <%= quote.quotation %>”</p><br>
+<p>- <%= quote.author %></p><br>
 <br><br>
 <br></div>
 
@@ -32,6 +33,15 @@
          
 <%- include partials/footer %>
 </body>
+ <style type="text/css">
+  	#mainDiv{
+  max-width: 100%;
+  max-height: 100%;
+  		   background: url(../images<%= quote.image %>);
+    background-size: cover;
+    background-repeat: no-repeat;
+  	}
+  </style>
   <script src="javascripts/bootstrap.js"></script>
         <script src="javascripts/main.js"></script>
 

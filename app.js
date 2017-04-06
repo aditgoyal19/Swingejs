@@ -10,6 +10,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
+var random = require('mongoose-simple-random');
 var User = require('./models/User.js');
 var logout = require('express-passport-logout');
 
