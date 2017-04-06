@@ -64,7 +64,7 @@ width: 100%;
     padding-left: 25px;
  }
  /*register*/
- #loginform,#registerform form{
+ #loginform,#registerform form, #help{
    padding-top:40px;
    margin-top: 60px;
 
@@ -73,12 +73,17 @@ width: 100%;
    {
  outline: 0 none;
 }
-   #loginform input, .registerinput{
+   #loginform input, .registerinput, #help textarea{
 
    background-color: rgba(0,0,0,0);
    border: 0px;
    color: white;
 
+ }
+ #help textarea{
+  width: 170px;
+  padding-right: 0px;
+  padding-left: 0px;
  }
 
  #loginform hr,  #registerform hr{

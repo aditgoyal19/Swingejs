@@ -8,20 +8,55 @@
 </head>
 <body ng-app="swingApp" >
 <%- include partials/header %>
-<div class="container" id="aboutdiv">
+<div class="container" id="registerform">
+<hr>Help</h3>
 
-<br>
-<br>
-<br>
-<hr>
-<h3>Home</h3>
-<div id="helpDiv">
-<br>
-<br>
-<p>
-Voluptatibus eleifend totam anim facilis pellentesque conubia, dolores iusto pretium aenean maxime! Illum rerum consectetur, integer! Dolorum? Officiis numquam senectus vivamus, aspernatur! Metus eu quisque torquent! Fuga bibendum quas ullamcorper, eos tenetur, arcu mattis, veritatis molestias suscipit ultrices mollit sollicitudin eaque magna phasellus urna quia? Mollit dapibus feugiat, vitae 
-</p>
+
+<form method="POST" action="help" id="help">
+<div class="row">
+<div class="col-xs-3">
+<img src="images/user.png" height="20" width="20">
 </div>
+<div class="col-xs-9">
+<input type="text" name="username" id="username"  placeholder="Enter your Name" class="registerinput"/>
+</div>
+
+</div>
+<hr>
+
+
+
+<div class="row">
+<div class="col-xs-3">
+<img src="images/email.png" height="20" width="20">
+</div>
+<div class="col-xs-9">
+
+<input type="text" name="email" id="email"  placeholder="Enter your Email" class="registerinput"/>
+
+</div>
+
+</div>
+<hr>  
+
+
+
+
+<div class="row">
+<div class="col-xs-3">
+<img src="images/lock.png" height="20" width="20">
+</div>
+<div class="col-xs-9">
+<textarea name="message" maxlength="500" rows="3" placeholder="Write your message here..." type="text"></textarea>
+</div>
+</div>
+<hr>
+<br>
+<input type="submit" class="btn mainButton" value="Submit">
+
+
+
+</form>
 </div>
          
 <%- include partials/footer %>
