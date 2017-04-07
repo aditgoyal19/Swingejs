@@ -1,20 +1,21 @@
 var express = require('express');
-var nodemailer= require ('nodemailer');
+var nodemailer= require ('nodemailer');		
 var hashcash = require('nodemailer-hashcash');
+var transporter= nodemailer.createTransport('smtps://shilarora10@gmail.com:plumpeach@smtp.gmail.com');		
+var transporterSup=nodemailer.createTransport('smtps://shilwebsup@gmail.com:plumpeach@smtp.gmail.com');		
+//transporter.use('compile', hashcash());		
+//transporterSup.use('compile', hashcash());
 //1. Add path module
 var path = require('path');
 
 var router = express.Router();
 
-var transporter= nodemailer.createTransport('smtps://shilarora10@gmail.com:plumpeach@smtp.gmail.com');
-var transporterSup=nodemailer.createTransport('smtps://shilwebsup@gmail.com:plumpeach@smtp.gmail.com');
-//transporter.use('compile', hashcash());
-//transporterSup.use('compile', hashcash());
 
 var mongoose = require('mongoose');
+var random = require('mongoose-simple-random');
 /*change model*/
 var User = require('../models/User.js');
-
+var Quote = require('../models/Quote.js');
 var passport = require('passport');
 
 function isLoggedIn(req, res, next) {
@@ -39,7 +40,7 @@ router.get('/login', function(req, res) {
 	  res.render('login', { title: 'swing/login' });
 }); 
 router.post('/login',
-  passport.authenticate('local', { successRedirect: '/home',
+  passport.authenticate('local', { successRedirect: '/account',
                                    failureRedirect: '/login',
                                    failureFlash: true })
 );
@@ -78,20 +79,36 @@ if(req.body.password = req.body.confirm){
 
 /* 4. GET home page. */
 router.get('/home', function(req, res) {
-    res.render('home', { title: 'swing/home' });
+
+Quote.findOneRandom(function (err, quote) {
+  console.log(quote);
+
+    res.render('home', {quote : quote , title: 'swing/home' });
+    });
 }); 
 
 
 /* 5. GET account page. */
 router.get('/account',isLoggedIn, function(req, res) {
-    res.render('account', { title: 'swing/account' });
+     console.log(req.user);
+    res.render('account', {user : req.user , title: 'swing/account'});
+ 
 }); 
 
+router.post('/account/:id',isLoggedIn, function(req, res) {
+   console.log(req.session.passport.user.id);
+/* res.redirect('/account');*/
+User.update({_id: req.session.passport.user.id}, {
+        email: req.body.email
+    },function(err, numberAffected, rawResponse) {
+       console.log(err);
+    });
+}); 
 
 /* 6. GET settings page. */
-router.get('/settings', function(req, res) {
+/*router.get('/settings', function(req, res) {
     res.render('settings', { title: 'swing/settings' });
-}); 
+}); */
 
 
 /* 7. GET survey page. */
@@ -116,56 +133,55 @@ router.get('/aboutus', function(req, res) {
 router.get('/help', function(req, res) {
     res.render('help', { title: 'swing/help' });
 }); 
-
-router.post("/help",function(req,res,next){
-	//var lastName= req.body.lname;
-	var firstName= req.body.username;
-	var emailTo= req.body.email;
-	//var emailSubject= req.body.subject;
-	var emailMessage= req.body.message+" Recieved from Name:"+" "+ firstName+" with Email Address: "+emailTo;
-	
-	
-	// setup email with data to send from admin account to support account
-	var mailOptions = {
-    from: 'shilarora10@gmail.com', // admin address
-    to: 'shilwebsup@gmail.com', // support address
-    subject: "Message from Swing App", // Subject line
-    text: emailMessage // plaintext body
-   
-						};
-
-	// send mail with defined admin transport object
-	transporter.sendMail(mailOptions, function(error, info){
-    if(error){ 
-        return console.log(error);
-    }
-	else{
-							// setup email with data to send from support account to customer account
-						var mailOptionsSup = {
-						from: 'shilwebsup@gmail.com', // sender address
-						to: emailTo, // list of receivers
-						subject: 'Message from Shil Inc. Support', // Subject line
-						text: 'Hello  '+firstName+','+'\u000d \u000d'+'Thanks for choosing Shil Inc. We will send you complete details shortly.'+'\u000d \u000d'+'Regards,'+'\u000d \u000d'+'Shil Inc.' // plaintext body
-
-						};
-						// send mail with defined support transport object
-							transporterSup.sendMail(mailOptionsSup, function(error, info){
-									if(error){ 
-													return console.log(error);
-											}
-									else
-									{
-										res.send("Thanks for your message. You will recieve the email from us soon" );
-									}		
-		
-							});
-		}
-	
-			});
-	
-	
-});
-
+router.post("/help",function(req,res,next){		
+ 	//var lastName= req.body.lname;		
+ 	var firstName= req.body.username;		
+ 	var emailTo= req.body.email;		
+ 	//var emailSubject= req.body.subject;		
+ 	var emailMessage= req.body.message+" Recieved from Name:"+" "+ firstName+" with Email Address: "+emailTo;		
+ 			
+ 			
+ 	// setup email with data to send from admin account to support account		
+ 	var mailOptions = {		
+     from: 'shilarora10@gmail.com', // admin address		
+     to: 'shilwebsup@gmail.com', // support address		
+     subject: "Message from Swing App", // Subject line		
+     text: emailMessage // plaintext body		
+    		
+ 						};		
+ 		
+ 	// send mail with defined admin transport object		
+ 	transporter.sendMail(mailOptions, function(error, info){		
+     if(error){ 		
+         return console.log(error);		
+     }		
+ 	else{		
+ 							// setup email with data to send from support account to customer account		
+ 						var mailOptionsSup = {		
+ 						from: 'shilwebsup@gmail.com', // sender address		
+ 						to: emailTo, // list of receivers		
+ 						subject: 'Message from Shil Inc. Support', // Subject line		
+ 						text: 'Hello  '+firstName+','+'\u000d \u000d'+'Thanks for choosing Shil Inc. We will send you complete details shortly.'+'\u000d \u000d'+'Regards,'+'\u000d \u000d'+'Shil Inc.' // plaintext body		
+ 		
+ 						};		
+ 						// send mail with defined support transport object		
+ 							transporterSup.sendMail(mailOptionsSup, function(error, info){		
+ 									if(error){ 		
+ 													return console.log(error);		
+ 											}		
+ 									else		
+ 									{		
+ 										res.send("Thanks for your message. You will recieve the email from us soon" );		
+ 									}				
+ 				
+ 						});		
+ 	}		
+ 		
+ 		});		
+ 		
+ 		
+ });		
+ 
 
 /* 11. GET gallery page. */
 router.get('/gallery', function(req, res) {
@@ -173,9 +189,18 @@ router.get('/gallery', function(req, res) {
 }); 
 
 /* 12. GET gallery page. */
-router.get('/quotes', function(req, res) {
-    res.render('quotes', { title: 'swing/quotes' });
-}); 
+/*router.get('/quotes', function(req, res) {
+  console.log(req.quote);
+    res.render('quotes', { quotes: req.quotes, title: 'swing/quotes' });
+}); */
+
+router.get('/quotes', function(req, res, next) {
+ Quote.find(function(err, quotes) {
+  if(err) next(err);
+  console.log(quotes);
+    res.render('quotes', { quotes: quotes, title: 'swing/quotes' });
+});
+})
 
 /*13.logout*/
   router.get('/logout', function (req, res, next) {
